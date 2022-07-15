@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 import os
 import itertools
+import natsort
 
 table_ranges = pd.read_csv(os.path.join(os.getcwd(), 'Table_Ranges.csv'))
 tables_dir = os.path.join(os.getcwd(), 'Raw Tables')
 tables = os.listdir(tables_dir)
-tables = [os.path.join(tables_dir, table) for table in tables]
+tables = natsort.natsorted([os.path.join(tables_dir, table) for table in tables])
 
 t_all = pd.DataFrame()
 for idx, row in table_ranges.iterrows():
